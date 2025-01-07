@@ -1,0 +1,40 @@
+$navbar-bg: #f8f9fa
+$navbar-text-color: #333
+$navbar-brand-color: #007bff
+$navbar-link-color: #007bff
+$navbar-link-hover-color: #0056b3
+
+.navbar
+  background-color: $navbar-bg
+  .navbar-brand
+    color: $navbar-brand-color
+    font-weight: bold
+    font-size: 1.5rem
+    &:hover
+      color: darken($navbar-brand-color, 10%)
+
+  .navbar-nav
+    .nav-item
+      .nav-link
+        color: $navbar-link-color
+        font-size: 1.1rem
+        padding: 0.8rem 1rem
+        &:hover
+          color: $navbar-link-hover-color
+          text-decoration: underline
+
+@media (max-width: 767px)
+  .navbar
+    padding: 0.5rem 1rem
+
+  .navbar-nav
+    .nav-item
+      .nav-link
+        padding: 0.5rem 0.8rem
+
+  .navbar-toggler-icon
+    background-color: $navbar-link-color
+
+  .navbar-toggler
+    border: none
+    color: $navbar-link-color
