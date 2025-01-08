@@ -1,0 +1,19 @@
+{
+    "project": [
+        {
+            "title": "Sandy's Rocket",
+            "description": "A revolutionary rocket designed by Sandy Cheeks to explore the outer space.",
+            "image": "assets/images/rocket.jpg"
+        },
+        {
+            "title": "Underwater Research Station",
+            "description": "An underwater research facility to study marine life in Bikini Bottom.",
+            "image": "assets/images/research-station.jpg"
+        },
+        {
+            "title": "Futuristic Lab",
+            "description": "A futuristic laboratory with advanced technology for scientific experiments.",
+            "image": "assets/images/futuristic-lab.jpg"
+        }
+    ]
+}

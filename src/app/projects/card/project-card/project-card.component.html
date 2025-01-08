@@ -1,0 +1,14 @@
+<div class="project-card">
+    <div class="card-image">
+      <ng-content select="[project-image]"></ng-content>
+    </div>
+    <div class="card-title">
+      <ng-content select="[project-title]"></ng-content>
+    </div>
+    <div class="card-description">
+      <ng-content select="[project-description]"></ng-content>
+    </div>
+
+    <app-project-modal #modal [title]="title" [description]="description"></app-project-modal>
+  </div>
+  
