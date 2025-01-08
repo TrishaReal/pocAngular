@@ -3,31 +3,27 @@ import { ProjectCardComponent } from './card/project-card/project-card.component
 import { CommonModule } from '@angular/common';
 import { ProjectModalComponent } from './modal/project-modal/project-modal.component';
 import { CommonService } from './service/common.service';
-import {  HttpClientModule } from '@angular/common/http';
-
 
 @Component({
   selector: 'app-projects',
   standalone: true,
-  imports: [CommonModule, ProjectCardComponent, ProjectModalComponent, HttpClientModule],
+  imports: [CommonModule, ProjectCardComponent, ProjectModalComponent],  // No need for HttpClientModule here
   templateUrl: './projects.component.html',
-  styleUrl: './projects.component.sass'
+  styleUrls: ['./projects.component.sass']
 })
 export class ProjectsComponent implements OnInit {
-  projects: any;
+  projects: any[] = [];
   commonService = inject(CommonService);
-  // constructor(private commonService: CommonService) {}
 
   ngOnInit(): void {
-    this.commonService.fetchData().subscribe(
-      (response: any) => {
-        this.projects = response;
-        console.log(this.projects)
+    this.commonService.fetchData().subscribe({
+      next: (data: any) => {
+        this.projects = data.projects;
       },
-      (error: any) => {
-        console.error("The error is:", error)
+      error: (err: any) => {
+        console.error('Error fetching projects:', err);
       }
-    )
+    });
   }
 
   @ViewChild(ProjectModalComponent) modal!: ProjectModalComponent;
