@@ -30,21 +30,21 @@ export class CommonService {
 
   // Metodo per recuperare le competenze (skills)
   fetchSkills(): Observable<any[]> {
-    return this.httpClient.get<any>(this.privateApiUrl).pipe( //Con la pipe "filtro" il risultato dell'observable
+    return this.httpClient.get<any>(this.privateApiUrl).pipe( 
       map(data => data.skills) // Estraggo solo le competenze dal JSON
     );
   }
 
   // Metodo per recuperare le informazioni personali
   fetchPersonalInfo(): Observable<any> {
-    return this.httpClient.get<any>(this.privateApiUrl).pipe( //Con la pipe "filtro" il risultato dell'observable
+    return this.httpClient.get<any>(this.privateApiUrl).pipe( 
       map(data => data.personalInfo) // Estraggo solo le informazioni personali dal JSON
     );
   }
 
   // Metodo per recuperare le informazioni del resume
   fetchResume(): Observable<any> {
-    return this.httpClient.get<any>(this.privateApiUrl).pipe( //Con la pipe "filtro" il risultato dell'observable
+    return this.httpClient.get<any>(this.privateApiUrl).pipe( 
       map(data => data.resume) // Estraggo solo le informazioni personali dal JSON
     );
   }

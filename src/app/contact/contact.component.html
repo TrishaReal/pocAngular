@@ -1,1 +1,71 @@
-<p>contact works!</p>
+<div class="contact-container container py-4">
+    <div class="row">
+      <!-- Contact Details Section -->
+      <div class="col-md-6 mb-4">
+        <section class="contact-details">
+          <h3>Contact Information</h3>
+          <ul class="list-unstyled">
+            <li><strong>Email:</strong> <a href="mailto:{{ personalInfo?.contact?.email }}">{{ personalInfo?.contact?.email }}</a></li>
+            <li><strong>Phone:</strong> <a href="tel:{{ personalInfo?.contact?.phone }}">{{ personalInfo?.contact?.phone }}</a></li>
+            <li><strong>Website:</strong> <a href="http://{{ personalInfo?.contact?.website }}" target="_blank">{{ personalInfo?.contact?.website }}</a></li>
+          </ul>
+        </section>
+  
+        <section class="social-links mt-4">
+          <h3>Follow me on Social Media</h3>
+          <ul class="list-unstyled">
+            <li><a href="https://{{ personalInfo?.social?.linkedin }}" target="_blank">LinkedIn</a></li>
+            <li><a href="https://{{ personalInfo?.social?.github }}" target="_blank">GitHub</a></li>
+            <li><a href="https://{{ personalInfo?.social?.twitter }}" target="_blank">Twitter</a></li>
+          </ul>
+        </section>
+      </div>
+  
+      <!-- Contact Form Section -->
+      <div class="col-md-6">
+        <section class="contact-form">
+          <h3>Send a Message</h3>
+          <form (ngSubmit)="onSubmit()" #contactForm="ngForm" class="p-3 border rounded">
+            <div class="row">
+              <!-- First Name -->
+              <div class="col-6 mb-3">
+                <mat-form-field appearance="fill" class="w-100">
+                  <mat-label>First Name</mat-label>
+                  <input matInput placeholder="First Name" [(ngModel)]="contact.firstName" name="firstName" required />
+                </mat-form-field>
+              </div>
+              <!-- Last Name -->
+              <div class="col-6 mb-3">
+                <mat-form-field appearance="fill" class="w-100">
+                  <mat-label>Last Name</mat-label>
+                  <input matInput placeholder="Last Name" [(ngModel)]="contact.lastName" name="lastName" required />
+                </mat-form-field>
+              </div>
+            </div>
+  
+            <!-- Email -->
+            <div class="mb-3">
+              <mat-form-field appearance="fill" class="w-100">
+                <mat-label>Email</mat-label>
+                <input matInput placeholder="Email" [(ngModel)]="contact.email" name="email" required email />
+              </mat-form-field>
+            </div>
+  
+            <!-- Description -->
+            <div class="mb-3">
+              <mat-form-field appearance="fill" class="w-100">
+                <mat-label>Description</mat-label>
+                <textarea matInput placeholder="Describe your message" [(ngModel)]="contact.description" name="description" required></textarea>
+              </mat-form-field>
+            </div>
+  
+            <!-- Submit Button -->
+            <div class="text-end">
+              <button mat-raised-button color="primary" type="submit" [disabled]="!contactForm.valid">Send</button>
+            </div>
+          </form>
+        </section>
+      </div>
+    </div>
+  </div>
+  
