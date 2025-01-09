@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { ProjectModalComponent } from './modal/project-modal/project-modal.component';
 import { CommonService } from './service/common.service';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-projects',
@@ -12,6 +13,7 @@ import { MatTabsModule } from '@angular/material/tabs';
     CommonModule,
     ProjectCardComponent,
     MatTabsModule,
+    MatButtonModule,
     ProjectModalComponent],  // No need for HttpClientModule here
   templateUrl: './projects.component.html',
   styleUrls: ['./projects.component.sass']
@@ -47,10 +49,11 @@ export class ProjectsComponent implements OnInit {
   //   });
   // }
 
-  @ViewChild(ProjectModalComponent) modal!: ProjectModalComponent; // Accede al componente modale
+  @ViewChild(ProjectModalComponent) modal!: ProjectModalComponent; 
 
-  openModal(project: { title: string; description: string }) {
+  openModal(project: {  image: string; title: string; description: string }) {
     // Metodo per aprire il modale e visualizzare i dettagli di un progetto
+    this.modal.image = project.image;  
     this.modal.title = project.title;
     this.modal.description = project.description;
     this.modal.open();
