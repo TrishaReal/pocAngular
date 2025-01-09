@@ -1,19 +1,100 @@
 {
-    "projects": [
+  "projects": [
+    {
+      "category": "Rocket Science Projects",
+      "items": [
         {
-            "title": "Sandy's Rocket",
-            "description": "A revolutionary rocket designed by Sandy Cheeks to explore the outer space.",
-            "image": "assets/images/rocket.jpg"
-        },
-        {
-            "title": "Underwater Research Station",
-            "description": "An underwater research facility to study marine life in Bikini Bottom.",
-            "image": "assets/images/research-station.jpg"
-        },
-        {
-            "title": "Futuristic Lab",
-            "description": "A futuristic laboratory with advanced technology for scientific experiments.",
-            "image": "assets/images/futuristic-lab.jpg"
+          "title": "Sandy's Rocket",
+          "description": "A revolutionary rocket designed by Sandy Cheeks to explore outer space.",
+          "image": "assets/images/rocket.jpg"
         }
-    ]
+      ]
+    },
+    {
+      "category": "Marine Biology Projects",
+      "items": [
+        {
+          "title": "Underwater Research Station",
+          "description": "An underwater research facility to study marine life in Bikini Bottom.",
+          "image": "assets/images/research-station.jpg"
+        },
+        {
+          "title": "Futuristic Lab",
+          "description": "A futuristic laboratory with advanced technology for scientific experiments.",
+          "image": "assets/images/futuristic-lab.jpg"
+        }
+      ]
+    }
+  ],
+  "skills": [
+    {
+      "name": "Engineering",
+      "value": 90
+    },
+    {
+      "name": "Rocket Science",
+      "value": 85
+    },
+    {
+      "name": "Marine Biology",
+      "value": 75
+    },
+    {
+      "name": "Karate",
+      "value": 95
+    },
+    {
+      "name": "Cooking",
+      "value": 60
+    }
+  ],
+  "personalInfo": {
+    "name": "Sandy Cheeks",
+    "occupation": "Scientist & Adventurer",
+    "bio": "Sandy Cheeks is a brilliant scientist and an amazing squirrel from Texas, living in a glass dome under the sea in Bikini Bottom. Known for her adventurous spirit and intellect.",
+    "location": "Bikini Bottom",
+    "contact": {
+      "email": "sandy.cheeks@bikinibottom.com",
+      "phone": "+1234567890",
+      "website": "www.sandycheeks.com"
+    },
+    "social": {
+      "linkedin": "linkedin.com/in/sandycheeks",
+      "github": "github.com/sandycheeks",
+      "twitter": "twitter.com/scientificsandy"
+    }
+  },
+  "resume": [
+    {
+      "category": "Education",
+      "items": [
+        {
+          "title": "PhD in Rocket Science",
+          "institution": "Bikini Bottom University",
+          "year": "2025"
+        },
+        {
+          "title": "Masters in Marine Biology",
+          "institution": "Bikini Bottom University",
+          "year": "2023"
+        }
+      ]
+    },
+    {
+      "category": "Work Experience",
+      "items": [
+        {
+          "title": "Lead Scientist",
+          "company": "Bikini Bottom Research Lab",
+          "duration": "2024 - Present"
+        },
+        {
+          "title": "Researcher",
+          "company": "Bikini Bottom Research Lab",
+          "duration": "2022 - 2024"
+        }
+      ]
+    }
+  ]
+  
 }

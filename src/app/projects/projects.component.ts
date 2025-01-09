@@ -3,32 +3,54 @@ import { ProjectCardComponent } from './card/project-card/project-card.component
 import { CommonModule } from '@angular/common';
 import { ProjectModalComponent } from './modal/project-modal/project-modal.component';
 import { CommonService } from './service/common.service';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @Component({
   selector: 'app-projects',
   standalone: true,
-  imports: [CommonModule, ProjectCardComponent, ProjectModalComponent],  // No need for HttpClientModule here
+  imports: [
+    CommonModule,
+    ProjectCardComponent,
+    MatTabsModule,
+    ProjectModalComponent],  // No need for HttpClientModule here
   templateUrl: './projects.component.html',
   styleUrls: ['./projects.component.sass']
 })
 export class ProjectsComponent implements OnInit {
-  projects: any[] = [];
-  commonService = inject(CommonService);
+  projects: any[] = []; 
+  allProjects: any[] = []; //if i want to see all together
+  commonService = inject(CommonService); 
 
   ngOnInit(): void {
-    this.commonService.fetchData().subscribe({
-      next: (data: any) => {
-        this.projects = data.projects;
+    this.commonService.fetchProjects().subscribe({
+      next: (project) => {
+        this.projects = project;
+        console.log('Resume:', this.projects); 
       },
-      error: (err: any) => {
-        console.error('Error fetching projects:', err);
+      error: (err) => {
+        console.error('Error fetching project:', err); 
       }
     });
   }
 
-  @ViewChild(ProjectModalComponent) modal!: ProjectModalComponent;
+  // ngOnInit(): void {
+  //   this.commonService.fetchProjects().subscribe({
+  //     next: (data: any) => {
+  //       this.projects = data; // Salvo i progetti divisi per categorie nell'array
+  //       this.allProjects = this.projects.reduce((acc, category) => {
+  //         return acc.concat(category.items); // Unisce tutti i progetti in un unico array
+  //       }, []); // L'array combinato
+  //     },
+  //     error: (err: any) => {
+  //       console.error('Error fetching projects:', err);
+  //     }
+  //   });
+  // }
+
+  @ViewChild(ProjectModalComponent) modal!: ProjectModalComponent; // Accede al componente modale
 
   openModal(project: { title: string; description: string }) {
+    // Metodo per aprire il modale e visualizzare i dettagli di un progetto
     this.modal.title = project.title;
     this.modal.description = project.description;
     this.modal.open();
