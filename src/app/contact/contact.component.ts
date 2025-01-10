@@ -20,7 +20,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule
   ],
   templateUrl: './contact.component.html',
-  styleUrl: './contact.component.sass'
+  styleUrls: ['./contact.component.sass']
+
 })
 export class ContactComponent {
   personalInfo: any; // info anagrafiche
@@ -30,6 +31,8 @@ export class ContactComponent {
     email: '',
     description: ''
   };
+  feedbackList: any[] = [];
+  currentIndex: number = 0;
 
   commonService = inject(CommonService)
 
@@ -41,10 +44,35 @@ export class ContactComponent {
         console.log('Personal Info:', this.personalInfo)
       },
       error: (err) => {
-        console.error('The error is -->', err);
+        console.error('The p-info error is -->', err);
+      }
+    });
+
+    // Recupero i feedback
+    this.commonService.fetchFeedback().subscribe({
+      next: (response) => {
+        this.feedbackList = response.feedback;
+        console.log('feedback list:', this.feedbackList);
+      },
+      error: (err) => {
+        console.error('The feedback error is -->', err);
       }
     });
   }
+
+  getStars(rating: number): string[] {
+    const stars = [];
+    for (let i = 1; i <= 5; i++) {
+      if (i <= rating) {
+        stars.push('bi-star-fill');  
+      } else {
+        stars.push('bi-star');  
+      }
+    }
+    return stars;
+  }
+  
+  //contact form submit 
   onSubmit(): void {
     if (this.contact.firstName && this.contact.lastName && this.contact.email && this.contact.description) {
       console.log('Contact Form Submitted', this.contact);
