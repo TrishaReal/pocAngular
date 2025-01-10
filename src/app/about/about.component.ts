@@ -28,37 +28,21 @@ export class AboutComponent {
   commonService = inject(CommonService)
 
   ngOnInit(): void {
-    // Recupero i dati personali
-    this.commonService.fetchPersonalInfo().subscribe({
-      next: (info) => {
-        this.personalInfo = info;
-        console.log('Personal Info:', this.personalInfo);
+    this.commonService.fetchData().subscribe({
+      next: (data) => {
+        this.personalInfo = data.personalInfo;
+        this.skills = data.skills;
+        this.resume = data.resume;
+        console.log('Fetched Data:', {
+          personalInfo: this.personalInfo,
+          skills: this.skills,
+          resume: this.resume,
+        });
       },
       error: (err) => {
-        console.error('Error fetching personal info:', err); // Gestione dell'errore
-      }
-    });
-    // Recupero le skills 
-    this.commonService.fetchSkills().subscribe({
-      next: (skills) => {
-        this.skills = skills;
-        console.log('Skills:', this.skills); // Log delle skills
+        console.error('Error fetching data:', err);
       },
-      error: (err) => {
-        console.error('Error fetching skills:', err); // Gestione dell'errore
-      }
-    });
-    // Recupero i dati del resume
-    this.commonService.fetchResume().subscribe({
-      next: (resume) => {
-        this.resume = resume;
-        console.log('Resume:', this.resume); // Verifica che i dati siano corretti
-      },
-      error: (err) => {
-        console.error('Error fetching resume:', err); // Gestione dell'errore
-      }
     });
   }
-
 
 }

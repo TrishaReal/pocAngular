@@ -2,19 +2,33 @@
   <h4 class="mb-4">Projects by Sandy Cheeks!</h4>
 
   <mat-tab-group>
-    <mat-tab *ngFor="let category of projects">
-      <ng-template mat-tab-label>
-          <span class="primary">
-            {{ category.category }}
-          </span>
-      </ng-template>
-        <div class="col-md-4" *ngFor="let project of category.items">
-          <app-project-card (click)="openModal(project)">
+
+    <mat-tab label="All">
+      <div class="row">
+        <div class="col-md-4" *ngFor="let project of allProjects">
+          <app-project-card>
             <img [src]="project.image" alt="Project Image" class="project-image" project-image
-                 style="width: 100%; height: 200px; object-fit: cover;">
-            <h5 title project-title>{{ project.title }}</h5>
+              style="width: 100%; height: 200px; object-fit: cover;">
+            <h5 title project-title (click)="openModal(project)">{{ project.title }}</h5>
             <p description project-description>{{ project.description }}</p>
           </app-project-card>
+        </div>
+      </div>
+    </mat-tab>
+
+    <mat-tab *ngFor="let category of projects">
+      <ng-template mat-tab-label>
+        <span class="primary">
+          {{ category.category }}
+        </span>
+      </ng-template>
+      <div class="col-md-4" *ngFor="let project of category.items">
+        <app-project-card (click)="openModal(project)">
+          <img [src]="project.image" alt="Project Image" class="project-image" project-image
+            style="width: 100%; height: 200px; object-fit: cover;">
+          <h5 title project-title>{{ project.title }}</h5>
+          <p description project-description>{{ project.description }}</p>
+        </app-project-card>
       </div>
     </mat-tab>
   </mat-tab-group>

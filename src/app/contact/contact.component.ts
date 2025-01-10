@@ -38,14 +38,16 @@ export class ContactComponent {
 
   ngOnInit(): void {
     // Recupero i dati personali
-    this.commonService.fetchPersonalInfo().subscribe({
-      next: (info) => {
-        this.personalInfo = info;
-        console.log('Personal Info:', this.personalInfo)
+    this.commonService.fetchData().subscribe({
+      next: (data) => {
+        this.personalInfo = data.personalInfo;
+        console.log('Fetched Data:', {
+          personalInfo: this.personalInfo,
+        });
       },
       error: (err) => {
-        console.error('The p-info error is -->', err);
-      }
+        console.error('Error fetching data:', err);
+      },
     });
 
     // Recupero i feedback
@@ -64,14 +66,14 @@ export class ContactComponent {
     const stars = [];
     for (let i = 1; i <= 5; i++) {
       if (i <= rating) {
-        stars.push('bi-star-fill');  
+        stars.push('bi-star-fill');
       } else {
-        stars.push('bi-star');  
+        stars.push('bi-star');
       }
     }
     return stars;
   }
-  
+
   //contact form submit 
   onSubmit(): void {
     if (this.contact.firstName && this.contact.lastName && this.contact.email && this.contact.description) {

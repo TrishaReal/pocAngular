@@ -24,30 +24,21 @@ export class ProjectsComponent implements OnInit {
   commonService = inject(CommonService); 
 
   ngOnInit(): void {
-    this.commonService.fetchProjects().subscribe({
-      next: (project) => {
-        this.projects = project;
-        console.log('Resume:', this.projects); 
+    this.commonService.fetchData().subscribe({
+      next: (data) => {
+        this.projects = data.projects;
+        this.allProjects = this.projects.reduce((acc, category) => {
+          return acc.concat(category.items); // Unisce tutti i progetti in un unico array
+        }, []); // L'array combinato
+        console.log('Fetched Data:', {
+          personalInfo: this.projects,
+        });
       },
       error: (err) => {
-        console.error('Error fetching project:', err); 
-      }
+        console.error('Error fetching data:', err);
+      },
     });
   }
-
-  // ngOnInit(): void {
-  //   this.commonService.fetchProjects().subscribe({
-  //     next: (data: any) => {
-  //       this.projects = data; // Salvo i progetti divisi per categorie nell'array
-  //       this.allProjects = this.projects.reduce((acc, category) => {
-  //         return acc.concat(category.items); // Unisce tutti i progetti in un unico array
-  //       }, []); // L'array combinato
-  //     },
-  //     error: (err: any) => {
-  //       console.error('Error fetching projects:', err);
-  //     }
-  //   });
-  // }
 
   @ViewChild(ProjectModalComponent) modal!: ProjectModalComponent; 
 
