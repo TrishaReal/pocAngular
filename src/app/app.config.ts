@@ -10,6 +10,6 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),      // Registra il router
     provideHttpClient(),        // Registra il client HTTP
-    provideAnimationsAsync()    // Registra le animazioni (opzionali)
+    provideAnimationsAsync(), provideAnimationsAsync()    // Registra le animazioni (opzionali)
   ]
 };

@@ -33,9 +33,34 @@
 .text-warning i
   color: #f39c12
 
-.bi-star-fill
-  font-size: 1.25rem
+.stars i
+  cursor: pointer
+  font-size: 1.5rem
+  margin-right: 5px
 
-.bi-star
-  font-size: 1.25rem
-  color: #ccc
+.stars i:hover
+  color: gold
+
+button:disabled
+  opacity: 0.5
+  cursor: not-allowed
+  background-color: #cccccc
+  color: #ffffff
+  border: 1px solid #cccccc
+  box-shadow: none
+  transition: opacity 0.3s ease, background-color 0.3s ease, color 0.3s ease
+
+button.btn-submit
+  opacity: 1
+  background-color: #007bff
+  color: #ffffff
+  cursor: pointer
+  transition: opacity 0.3s ease, background-color 0.3s ease, color 0.3s ease
+
+button.btn-submit:disabled
+  background-color: #cccccc
+  color: #ffffff
+  cursor: not-allowed
+  opacity: 0.7
+
+

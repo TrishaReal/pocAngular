@@ -16,8 +16,14 @@ export class CommonService {
     return this.httpClient.get<any>(this.privateApiUrl);
   }
 
-   // Metodo per recuperare i feedback
-   fetchFeedback(): Observable<any> {
+  // Metodo per recuperare i feedback
+  fetchFeedback(): Observable<any> {
     return this.httpClient.get<any>(this.feedbackUrl);
   }
+
+  // Metodo POST per inviare il feedback 
+  postFeedback(feedback: any): Observable<any> {
+    return this.httpClient.post<any>(this.feedbackUrl, feedback);
+  }
+
 }

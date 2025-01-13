@@ -14,34 +14,6 @@
             "feedback": "I've learned so much from Sandy. She's amazing!",
             "rating": 4,
             "date": "2025-01-09"
-        },
-        {
-            "author": "Mr. Krabs",
-            "image": "assets/images/mrkrabs.jpg",
-            "feedback": "Her ideas helped improve the Krabby Patty formula!",
-            "rating": 4,
-            "date": "2025-01-09"
-        },
-        {
-            "author": "Squidward Tentacles",
-            "image": "assets/images/squidward.jpg",
-            "feedback": "Sandy's creativity is unmatched. She's truly an artist!",
-            "rating": 4,
-            "date": "2025-01-09"
-        },
-        {
-            "author": "Plankton",
-            "image": "assets/images/plankton.jpg",
-            "feedback": "Sandy's methods are ruthless... but effective. I must admit, she's clever!",
-            "rating": 3,
-            "date": "2025-01-09"
-        },
-        {
-            "author": "Gary the Snail",
-            "image": "assets/images/gary.jpg",
-            "feedback": "Meow... ",
-            "rating": 5,
-            "date": "2025-01-09"
         }
     ]
 }

@@ -34,29 +34,26 @@
                         <div class="col-6 mb-3">
                             <mat-form-field appearance="fill" class="w-100">
                                 <mat-label>First Name</mat-label>
-                                <input matInput placeholder="First Name" [(ngModel)]="contact.firstName"
-                                    name="firstName" required />
+                                <input matInput placeholder="First Name" [(ngModel)]="contact.firstName" name="firstName" required />
                             </mat-form-field>
                         </div>
                         <!-- Last Name -->
                         <div class="col-6 mb-3">
                             <mat-form-field appearance="fill" class="w-100">
                                 <mat-label>Last Name</mat-label>
-                                <input matInput placeholder="Last Name" [(ngModel)]="contact.lastName" name="lastName"
-                                    required />
+                                <input matInput placeholder="Last Name" [(ngModel)]="contact.lastName" name="lastName" required />
                             </mat-form-field>
                         </div>
                     </div>
-
+            
                     <!-- Email -->
                     <div class="mb-3">
                         <mat-form-field appearance="fill" class="w-100">
                             <mat-label>Email</mat-label>
-                            <input matInput placeholder="Email" [(ngModel)]="contact.email" name="email" required
-                                email />
+                            <input matInput placeholder="Email" [(ngModel)]="contact.email" name="email" required email />
                         </mat-form-field>
                     </div>
-
+            
                     <!-- Description -->
                     <div class="mb-3">
                         <mat-form-field appearance="fill" class="w-100">
@@ -65,34 +62,97 @@
                                 name="description" required></textarea>
                         </mat-form-field>
                     </div>
-
-                    <!-- Submit Button -->
+            
+                    <!-- Buttons -->
                     <div class="text-end">
-                        <button mat-raised-button color="primary" type="submit"
-                            [disabled]="!contactForm.valid">Send</button>
+                        <!-- Submit Button -->
+                        <button mat-raised-button 
+                                color="primary" 
+                                type="submit" 
+                                [disabled]="!contactForm.valid" 
+                                class="btn-submit">
+                            Send
+                        </button>
+                        
+                        <!-- Reset Button -->
+                        <button mat-raised-button 
+                                color="warn" 
+                                type="button" 
+                                (click)="contactForm.resetForm()">
+                            Cancel
+                        </button>
                     </div>
+                    
                 </form>
             </section>
+            
+            
         </div>
 
     </div>
     <div class="row">
         <div class="col-md-12 mt-4">
-            <section class="feedback-section">
+            <section class="feedback-section mt-4">
                 <h3>Feedback</h3>
-                <div class="row">
+
+                <!-- Feedback Form -->
+                <form (ngSubmit)="addFeedback()" #feedbackForm="ngForm" class="p-3 border rounded mb-4">
+                    <div class="row">
+                        <!-- Nome -->
+                        <div class="col-6 mb-3">
+                            <mat-form-field appearance="fill" class="w-100">
+                                <mat-label>Nome</mat-label>
+                                <input matInput placeholder="Nome" [(ngModel)]="newFeedback.author" name="author" required />
+                            </mat-form-field>
+                        </div>
+                
+                        <!-- Commento -->
+                        <div class="col-6 mb-3">
+                            <mat-form-field appearance="fill" class="w-100">
+                                <mat-label>Commento</mat-label>
+                                <input matInput placeholder="Commento" [(ngModel)]="newFeedback.feedback" name="feedback" required />
+                            </mat-form-field>
+                        </div>
+                
+                        <!-- Immagine -->
+                        <div class="col-12 mb-3">
+                            <label for="file">Upload Image</label>
+                            <input id="file" type="file" (change)="onImageSelected($event)" />
+                        </div>
+                
+                        <!-- Rating -->
+                        <div class="col-12 mb-3">
+                            <label>Rating</label>
+                            <div class="stars">
+                                <i *ngFor="let star of stars; let i = index" (click)="setRating(i + 1)"
+                                    [class]="i < newFeedback.rating ? 'bi bi-star-fill' : 'bi bi-star'"></i>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <!-- Buttons -->
+                    <div class="text-end">
+                        <button mat-raised-button color="accent" type="submit" [disabled]="!feedbackForm.valid">Add Feedback</button>
+                        <button mat-raised-button color="warn" type="button" (click)="feedbackForm.resetForm()">Cancel</button>
+                    </div>
+                </form>
+                
+                
+
+
+                <!-- Feedback Cards -->
+                <div class="row ">
                     <div class="col-md-4 p-3" *ngFor="let feedback of feedbackList">
                         <div class="card">
-                            <img [src]="feedback.image" class="card-img-top" alt="author image">
+                            <img [src]="feedback.image || 'assets/images/default.jpg'" class="card-img-top"
+                                alt="author image">
                             <div class="card-body">
                                 <h5 class="card-title">{{ feedback.author }}</h5>
                                 <p class="card-text">{{ feedback.feedback }}</p>
                             </div>
                             <div class="card-footer">
                                 <div class="text-warning">
-                                    <!-- Modifica qui -->
                                     <ng-container *ngFor="let star of getStars(feedback.rating); let i = index">
-                                        <!-- Aggiungi il tag i con la classe dinamica -->
                                         <i [class]="star" class="bi"></i>
                                     </ng-container>
                                 </div>
@@ -101,7 +161,10 @@
                         </div>
                     </div>
                 </div>
+               
+
             </section>
+
         </div>
 
 

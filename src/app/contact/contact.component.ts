@@ -24,43 +24,91 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 })
 export class ContactComponent {
-  personalInfo: any; // info anagrafiche
+  personalInfo: any;
+
   contact = {
     firstName: '',
     lastName: '',
     email: '',
     description: ''
   };
-  feedbackList: any[] = [];
-  currentIndex: number = 0;
 
-  commonService = inject(CommonService)
+  feedbackList: any[] = [];
+  newFeedback = {
+    author: '',
+    feedback: '',
+    image: 'assets/images/default.jpg', // Immagine di default
+    date: new Date().toISOString().split('T')[0],
+    rating: 0
+  };
+
+  stars = new Array(5);
+
+  commonService = inject(CommonService);
 
   ngOnInit(): void {
-    // Recupero i dati personali
+
+    const storedFeedback = localStorage.getItem('feedbackList');
+    if (storedFeedback) {
+      this.feedbackList = JSON.parse(storedFeedback);
+    }
+
     this.commonService.fetchData().subscribe({
       next: (data) => {
         this.personalInfo = data.personalInfo;
-        console.log('Fetched Data:', {
-          personalInfo: this.personalInfo,
-        });
       },
-      error: (err) => {
-        console.error('Error fetching data:', err);
-      },
+      error: (err) => console.error('Error fetching data:', err),
     });
 
-    // Recupero i feedback
     this.commonService.fetchFeedback().subscribe({
       next: (response) => {
+        if (!this.feedbackList.length) {
         this.feedbackList = response.feedback;
-        console.log('feedback list:', this.feedbackList);
-      },
-      error: (err) => {
-        console.error('The feedback error is -->', err);
+        console.log('Feedback dal server:', this.feedbackList);
       }
+      },
+      error: (err) => console.error('The feedback error is -->', err),
     });
   }
+
+  onImageSelected(event: any): void {
+    const file = event.target.files[0];
+    if (file) {
+      // const temporaryUrl = URL.createObjectURL(file);
+      // this.newFeedback.image = temporaryUrl;
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.newFeedback.image = reader.result as string;
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
+  setRating(rating: number): void {
+    this.newFeedback.rating = rating;
+  }
+
+  addFeedback(): void {
+    this.feedbackList.unshift(this.newFeedback); 
+    this.commonService.postFeedback(this.newFeedback).subscribe({
+      next: () => {
+        console.log('Feedback inviato con successo:', this.newFeedback);
+        alert('Feedback aggiunto con successo!');
+
+        localStorage.setItem('feedbackList', JSON.stringify(this.feedbackList));
+
+        this.newFeedback = {
+          author: '',
+          feedback: '',
+          image: 'assets/images/default.jpg',
+          date: new Date().toISOString().split('T')[0],
+          rating: 5
+        };
+      },
+      error: (err) => console.error('Errore -->:', err),
+    });
+  }
+
 
   getStars(rating: number): string[] {
     const stars = [];
