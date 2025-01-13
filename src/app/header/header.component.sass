@@ -1,15 +1,19 @@
-$navbar-bg: #f8f9fa
+$navbar-bg: #FAF3DD
 $navbar-text-color: #333
-$navbar-brand-color: #007bff
-$navbar-link-color: #007bff
-$navbar-link-hover-color: #0056b3
+$navbar-brand-color: #FFA69E
+$navbar-link-color: #FFA69E
 
 .navbar
   background-color: $navbar-bg
+  height: 100px
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1)
+
   .navbar-brand
     color: $navbar-brand-color
-    font-weight: bold
-    font-size: 1.5rem
+    font-family: "Bagel Fat One", serif
+    font-weight: 400
+    font-style: normal
+    font-size: 1.6rem
     &:hover
       color: darken($navbar-brand-color, 10%)
 
@@ -17,10 +21,12 @@ $navbar-link-hover-color: #0056b3
     .nav-item
       .nav-link
         color: $navbar-link-color
-        font-size: 1.1rem
+        font-family: "Bagel Fat One", serif
+        font-weight: 200
+        font-size: 1.3rem
         padding: 0.8rem 1rem
         &:hover
-          color: $navbar-link-hover-color
+          color: darken($navbar-brand-color, 10%)
           text-decoration: underline
 
 @media (max-width: 767px)

@@ -2,7 +2,7 @@
   <!-- persona info -->
   <div class="row">
     <div class="col-12 col-md-6">
-      <img src="assets/sandy.webp" alt="{{ personalInfo?.name }}" class="img-fluid rounded-circle">
+      <img src="assets/images/sandy.png" alt="{{ personalInfo?.name }}" class="img-fluid">
     </div>
     <div class="col-12 col-md-6">
       <h1>About {{ personalInfo?.name }}</h1>
@@ -22,42 +22,45 @@
     </div>
   </div>
 
-  <!-- skills -->
-  <div class="row mt-5">
-    <div class="col-12">
-      <h2>Skills</h2>
-      <div class="row">
-        <!-- *ngFor = renders a template for each item in a collection -->
-        <div *ngFor="let skill of skills" class="col-12 col-md-6 skill-item">
-          <p>{{ skill.name }} ({{ skill.value }}%)</p>
-          <mat-progress-bar mode="determinate" [value]="skill.value"></mat-progress-bar>
+  <div class="section">
+    <!-- skills -->
+    <div class="row skills">
+      <div class="col-12">
+        <h2>Skills</h2>
+        <div class="row">
+          <!-- *ngFor = renders a template for each item in a collection -->
+          <div *ngFor="let skill of skills" class="col-12 col-md-6 skill-item">
+            <p>{{ skill.name }} ({{ skill.value }}%)</p>
+            <mat-progress-bar mode="determinate" [value]="skill.value" color="blue"></mat-progress-bar>
+          </div>
         </div>
+      </div>
+    </div>
+
+    <!-- resume -->
+    <div class="row resume">
+      <div class="col-12">
+        <h2>Resume</h2>
+
+        <mat-accordion class="custom-accordion">
+          <mat-expansion-panel *ngFor="let category of resume" class="custom-expansion-panel">
+            <mat-expansion-panel-header>
+              <mat-panel-title>{{ category.category }}</mat-panel-title>
+            </mat-expansion-panel-header>
+        
+            <div *ngFor="let item of category.items">
+              <div *ngIf="category.category === 'Education'">
+                <p><strong>{{ item.title }}</strong> - {{ item.institution }} ({{ item.year }})</p>
+              </div>
+              <div *ngIf="category.category === 'Work Experience'">
+                <p><strong>{{ item.title }}</strong> - {{ item.company }} ({{ item.duration }})</p>
+              </div>
+            </div>
+          </mat-expansion-panel>
+        </mat-accordion>
+        
       </div>
     </div>
   </div>
 
-  <!-- resume -->
-  <div class="row mt-4">
-    <div class="col-12">
-      <h2>Resume</h2>
-
-      <!-- Education  -->
-      <mat-accordion>
-        <mat-expansion-panel *ngFor="let category of resume" class="custom-expansion-panel">
-          <mat-expansion-panel-header>
-            <mat-panel-title>{{ category.category }}</mat-panel-title>
-          </mat-expansion-panel-header>
-      
-          <div *ngFor="let item of category.items">
-            <div *ngIf="category.category === 'Education'">
-              <p><strong>{{ item.title }}</strong> - {{ item.institution }} ({{ item.year }})</p>
-            </div>
-            <div *ngIf="category.category === 'Work Experience'">
-              <p><strong>{{ item.title }}</strong> - {{ item.company }} ({{ item.duration }})</p>
-            </div>
-          </div>
-        </mat-expansion-panel>
-      </mat-accordion>
-    </div>
-  </div>
 </div>
