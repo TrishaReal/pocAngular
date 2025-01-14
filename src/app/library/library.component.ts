@@ -21,7 +21,11 @@ export class LibraryComponent {
     this.getMovies();  
   }
 
-
+  /**
+   * subscribe() avvia l'ascolto dell'Observable creato dalla chiamata API.
+   * Quando i dati arrivano, il blocco `next` li elabora e aggiorna `movies` 
+   * con i risultati. Se c'è un errore, il blocco `error` lo gestisce.
+   */
   getMovies(): void {
     this.moviesService.getPopularMovies().subscribe({
       next: (response) => {
