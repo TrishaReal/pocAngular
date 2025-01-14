@@ -1,0 +1,18 @@
+<div class="library-container">
+    <input [(ngModel)]="searchQuery" type="text" placeholder="Search title..." (keyup)="searchMovies()"
+        class="search-bar" />
+    <div class="movie-list">
+        <mat-card *ngFor="let movie of movies" class="movie-card">
+            <mat-card-header>
+                <mat-card-title>{{ movie.title }}</mat-card-title>
+            </mat-card-header>
+            <img mat-card-image [src]="'https://image.tmdb.org/t/p/w500' + movie.poster_path" alt="movie poster" />
+            <mat-card-content>
+                <p class="overview">{{ movie.overview }}</p>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-button>Show More</button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</div>
