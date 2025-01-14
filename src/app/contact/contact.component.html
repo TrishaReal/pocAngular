@@ -1,172 +1,169 @@
-<div class="contact-container container py-4">
-    <div class="row">
-        <!-- Contact Details Section -->
-        <div class="col-md-6 mb-4">
-            <section class="contact-details">
-                <h3>Contact Information</h3>
-                <ul class="list-unstyled">
-                    <li><strong>Email:</strong> <a href="mailto:{{ personalInfo?.contact?.email }}">{{
-                            personalInfo?.contact?.email }}</a></li>
-                    <li><strong>Phone:</strong> <a href="tel:{{ personalInfo?.contact?.phone }}">{{
-                            personalInfo?.contact?.phone }}</a></li>
-                    <li><strong>Website:</strong> <a href="http://{{ personalInfo?.contact?.website }}"
-                            target="_blank">{{ personalInfo?.contact?.website }}</a></li>
-                </ul>
-            </section>
+<div class="contact-container container">
 
-            <section class="social-links mt-4">
-                <h3>Follow me on Social Media</h3>
-                <ul class="list-unstyled">
-                    <li><a href="https://{{ personalInfo?.social?.linkedin }}" target="_blank">LinkedIn</a></li>
-                    <li><a href="https://{{ personalInfo?.social?.github }}" target="_blank">GitHub</a></li>
-                    <li><a href="https://{{ personalInfo?.social?.twitter }}" target="_blank">Twitter</a></li>
-                </ul>
-            </section>
+    <div class="row contact-details">
+        <!-- Contact Information -->
+        <div class="col-12 col-md-6">
+            <h2>Get in Touch</h2>
+            <p><i class="bi bi-envelope"></i><a href="mailto:{{ personalInfo?.contact.email }}">{{
+                    personalInfo?.contact.email }}</a></p>
+            <p><i class="bi bi-phone"></i><a href="tel:{{ personalInfo?.contact.phone }}">{{ personalInfo?.contact.phone
+                    }}</a></p>
+            <p><i class="bi bi-globe"></i><a href="http://{{ personalInfo?.contact.website }}" target="_blank">{{
+                    personalInfo?.contact.website }}</a></p>
         </div>
 
-        <!-- Contact Form Section -->
-        <div class="col-md-6">
-            <section class="contact-form">
-                <h3>Send a Message</h3>
-                <form (ngSubmit)="onSubmit()" #contactForm="ngForm" class="p-3 border rounded">
-                    <div class="row">
-                        <!-- First Name -->
-                        <div class="col-6 mb-3">
-                            <mat-form-field appearance="fill" class="w-100">
-                                <mat-label>First Name</mat-label>
-                                <input matInput placeholder="First Name" [(ngModel)]="contact.firstName" name="firstName" required />
-                            </mat-form-field>
-                        </div>
-                        <!-- Last Name -->
-                        <div class="col-6 mb-3">
-                            <mat-form-field appearance="fill" class="w-100">
-                                <mat-label>Last Name</mat-label>
-                                <input matInput placeholder="Last Name" [(ngModel)]="contact.lastName" name="lastName" required />
-                            </mat-form-field>
-                        </div>
-                    </div>
-            
-                    <!-- Email -->
-                    <div class="mb-3">
+        <div class="col-12 col-md-6">
+            <h2>Send a Message</h2>
+            <form (ngSubmit)="onSubmit()" #contactForm="ngForm" class="p-3 border rounded">
+                <div class="row">
+                    <!-- First Name -->
+                    <div class="col-6 mb-3">
                         <mat-form-field appearance="fill" class="w-100">
-                            <mat-label>Email</mat-label>
-                            <input matInput placeholder="Email" [(ngModel)]="contact.email" name="email" required email />
+                            <mat-label>First Name</mat-label>
+                            <input matInput placeholder="First Name" [(ngModel)]="contact.firstName" name="firstName"
+                                required />
                         </mat-form-field>
                     </div>
-            
-                    <!-- Description -->
-                    <div class="mb-3">
+                    <!-- Last Name -->
+                    <div class="col-6 mb-3">
                         <mat-form-field appearance="fill" class="w-100">
-                            <mat-label>Description</mat-label>
-                            <textarea matInput placeholder="Describe your message" [(ngModel)]="contact.description"
-                                name="description" required></textarea>
+                            <mat-label>Last Name</mat-label>
+                            <input matInput placeholder="Last Name" [(ngModel)]="contact.lastName" name="lastName"
+                                required />
                         </mat-form-field>
                     </div>
-            
-                    <!-- Buttons -->
-                    <div class="text-end">
-                        <!-- Submit Button -->
-                        <button mat-raised-button 
-                                color="primary" 
-                                type="submit" 
-                                [disabled]="!contactForm.valid" 
-                                class="btn-submit">
-                            Send
-                        </button>
-                        
-                        <!-- Reset Button -->
-                        <button mat-raised-button 
-                                color="warn" 
-                                type="button" 
-                                (click)="contactForm.resetForm()">
-                            Cancel
-                        </button>
-                    </div>
-                    
-                </form>
-            </section>
-            
-            
+                </div>
+
+                <!-- Email -->
+                <div class="mb-3">
+                    <mat-form-field appearance="fill" class="w-100">
+                        <mat-label>Email</mat-label>
+                        <input matInput placeholder="Email" [(ngModel)]="contact.email" name="email" required email />
+                    </mat-form-field>
+                </div>
+
+                <!-- Description -->
+                <div class="mb-3">
+                    <mat-form-field appearance="fill" class="w-100">
+                        <mat-label>Description</mat-label>
+                        <textarea matInput placeholder="Describe your message" [(ngModel)]="contact.description"
+                            name="description" required></textarea>
+                    </mat-form-field>
+                </div>
+
+                <!-- Buttons -->
+                <div class="text-end">
+                    <!-- Reset Button -->
+                    <button mat-raised-button color="warn" type="button" (click)="contactForm.resetForm()">
+                        Cancel
+                    </button>
+
+                    <!-- Submit Button -->
+                    <button mat-raised-button color="primary" type="submit" [disabled]="!contactForm.valid"
+                        class="btn-submit">
+                        Send
+                    </button>
+                </div>
+
+            </form>
         </div>
 
     </div>
+
     <div class="row">
         <div class="col-md-12 mt-4">
             <section class="feedback-section mt-4">
-                <h3>Feedback</h3>
+                <h2 class="text-center mb-4">Add Your Feedback</h2>
 
                 <!-- Feedback Form -->
-                <form (ngSubmit)="addFeedback()" #feedbackForm="ngForm" class="p-3 border rounded mb-4">
+                <form (ngSubmit)="addFeedback()" #feedbackForm="ngForm"
+                    class="p-4 border rounded shadow-sm mb-4 bg-light">
                     <div class="row">
-                        <!-- Nome -->
-                        <div class="col-6 mb-3">
-                            <mat-form-field appearance="fill" class="w-100">
-                                <mat-label>Nome</mat-label>
-                                <input matInput placeholder="Nome" [(ngModel)]="newFeedback.author" name="author" required />
-                            </mat-form-field>
-                        </div>
-                
-                        <!-- Commento -->
-                        <div class="col-6 mb-3">
-                            <mat-form-field appearance="fill" class="w-100">
-                                <mat-label>Commento</mat-label>
-                                <input matInput placeholder="Commento" [(ngModel)]="newFeedback.feedback" name="feedback" required />
-                            </mat-form-field>
-                        </div>
-                
-                        <!-- Immagine -->
-                        <div class="col-12 mb-3">
-                            <label for="file">Upload Image</label>
-                            <input id="file" type="file" (change)="onImageSelected($event)" />
-                        </div>
-                
-                        <!-- Rating -->
-                        <div class="col-12 mb-3">
-                            <label>Rating</label>
-                            <div class="stars">
-                                <i *ngFor="let star of stars; let i = index" (click)="setRating(i + 1)"
-                                    [class]="i < newFeedback.rating ? 'bi bi-star-fill' : 'bi bi-star'"></i>
+                        <!-- Left Side: Upload, Rating, Name, and Comment -->
+                        <div class="col-md-6">
+                            <div class="mb-4 upload">
+                                <!-- Preview Image -->
+                                <div class="image-preview ">
+                                    <img [src]="newFeedback.image || 'assets/images/default.jpg'" alt="Image preview"
+                                        class="img-fluid rounded" />
+                                </div>
+
+                                <!-- Image Upload -->
+                                <label for="file" class="custom-file-upload d-flex align-items-center justify-content-start">
+                                    <i class="bi bi-upload me-2"></i> Upload Image
+                                </label>
+                                <input id="file" type="file" (change)="onImageSelected($event)" hidden />
+                            </div>
+
+                            <div class="mb-4">
+                                <!-- Rating -->
+                                <label>Rating</label>
+                                <div class="stars">
+                                    <i *ngFor="let star of stars; let i = index" (click)="setRating(i + 1)"
+                                        [class]="i < newFeedback.rating ? 'bi bi-star-fill' : 'bi bi-star'"></i>
+                                </div>
+                            </div>
+
+                            <div class="mb-4">
+                                <!-- Name -->
+                                <mat-form-field appearance="fill" class="w-100">
+                                    <mat-label>Nome</mat-label>
+                                    <input matInput placeholder="Nome" [(ngModel)]="newFeedback.author" name="author"
+                                        required />
+                                </mat-form-field>
+                            </div>
+
+                            <div class="mb-4">
+                                <!-- Comment -->
+                                <mat-form-field appearance="fill" class="w-100">
+                                    <mat-label>Commento</mat-label>
+                                    <textarea matInput placeholder="Comment" [(ngModel)]="newFeedback.feedback"
+                                        name="feedback" required></textarea>
+                                </mat-form-field>
                             </div>
                         </div>
+
+                        <!-- Right Side: Image of Sandy -->
+                        <div class="col-md-6 text-center">
+                            <img src="assets/sandy.webp" alt="{{ personalInfo?.name }}" class="img-fluid "
+                                style="width: auto;">
+                        </div>
                     </div>
-                
+
                     <!-- Buttons -->
-                    <div class="text-end">
-                        <button mat-raised-button color="accent" type="submit" [disabled]="!feedbackForm.valid">Add Feedback</button>
-                        <button mat-raised-button color="warn" type="button" (click)="feedbackForm.resetForm()">Cancel</button>
+                    <div class="d-flex justify-content-between mt-4">
+                        <button mat-raised-button color="warn" type="button"
+                            (click)="feedbackForm.resetForm()">Cancel</button>
+                        <button mat-raised-button color="accent" type="submit" class="btn-submit"
+                            [disabled]="!feedbackForm.valid">Add Feedback</button>
                     </div>
                 </form>
-                
-                
-
 
                 <!-- Feedback Cards -->
-                <div class="row ">
+                <div class="row">
                     <div class="col-md-4 p-3" *ngFor="let feedback of feedbackList">
-                        <div class="card">
+                        <div class="card shadow-sm">
                             <img [src]="feedback.image || 'assets/images/default.jpg'" class="card-img-top"
                                 alt="author image">
                             <div class="card-body">
                                 <h5 class="card-title">{{ feedback.author }}</h5>
                                 <p class="card-text">{{ feedback.feedback }}</p>
                             </div>
-                            <div class="card-footer">
+                            <div class="card-footer d-flex justify-content-between align-items-center">
                                 <div class="text-warning">
                                     <ng-container *ngFor="let star of getStars(feedback.rating); let i = index">
                                         <i [class]="star" class="bi"></i>
                                     </ng-container>
                                 </div>
-                                <span>{{ feedback.date }}</span>
+                                <span class="text-muted">{{ feedback.date }}</span>
                             </div>
                         </div>
                     </div>
                 </div>
-               
 
             </section>
-
         </div>
-
-
     </div>
+
+
 </div>

@@ -6,6 +6,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatIcon } from '@angular/material/icon';
 
 
 @Component({
@@ -17,7 +18,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatInputModule,
     MatButtonModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    MatIcon
   ],
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.sass']
@@ -74,15 +76,17 @@ export class ContactComponent {
   onImageSelected(event: any): void {
     const file = event.target.files[0];
     if (file) {
-      // const temporaryUrl = URL.createObjectURL(file);
-      // this.newFeedback.image = temporaryUrl;
       const reader = new FileReader();
       reader.onload = () => {
         this.newFeedback.image = reader.result as string;
       };
       reader.readAsDataURL(file);
+    } else {
+      this.newFeedback.image = 'assets/images/default.jpg';
     }
   }
+  
+  
 
   setRating(rating: number): void {
     this.newFeedback.rating = rating;
