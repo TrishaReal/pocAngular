@@ -1,23 +1,17 @@
 <div class="container">
   <!-- persona info -->
-  <div class="row">
+  <div class="row about">
     <div class="col-12 col-md-6">
       <img src="assets/images/sandy.png" alt="{{ personalInfo?.name }}" class="img-fluid">
     </div>
     <div class="col-12 col-md-6">
-      <h1>About {{ personalInfo?.name }}</h1>
+      <h1 class="name">Hi i'm <strong>{{ personalInfo?.name }}!</strong></h1>
       <p>{{ personalInfo?.bio }}</p>
-      <p><strong>Location:</strong> {{ personalInfo?.location }}</p>
-      <p><strong>Occupation:</strong> {{ personalInfo?.occupation }}</p>
+      <p><i class="bi bi-geo-alt"></i>{{ personalInfo?.location }}</p>
+      <p><i class="bi bi-briefcase"></i>{{ personalInfo?.occupation }}</p>
       <p>
-        <strong>Contact:</strong>
+        <i class="bi bi-envelope"></i>
         <a href="mailto:{{ personalInfo?.contact.email }}">{{ personalInfo?.contact.email }}</a>
-      </p>
-      <p>
-        <strong>Social:</strong>
-        <a href="https://{{ personalInfo?.social.linkedin }}" target="_blank">LinkedIn</a> |
-        <a href="https://{{ personalInfo?.social.github }}" target="_blank">GitHub</a> |
-        <a href="https://{{ personalInfo?.social.twitter }}" target="_blank">Twitter</a>
       </p>
     </div>
   </div>
@@ -31,7 +25,7 @@
           <!-- *ngFor = renders a template for each item in a collection -->
           <div *ngFor="let skill of skills" class="col-12 col-md-6 skill-item">
             <p>{{ skill.name }} ({{ skill.value }}%)</p>
-            <mat-progress-bar mode="determinate" [value]="skill.value" color="blue"></mat-progress-bar>
+            <mat-progress-bar mode="determinate" [value]="skill.value"></mat-progress-bar>
           </div>
         </div>
       </div>
@@ -47,18 +41,20 @@
             <mat-expansion-panel-header>
               <mat-panel-title>{{ category.category }}</mat-panel-title>
             </mat-expansion-panel-header>
-        
+
             <div *ngFor="let item of category.items">
               <div *ngIf="category.category === 'Education'">
-                <p><strong>{{ item.title }}</strong> - {{ item.institution }} ({{ item.year }})</p>
+                <p><i class="bi bi-flower3"></i><strong>{{ item.title }}</strong> - {{ item.institution }} ({{
+                  item.year }})</p>
               </div>
               <div *ngIf="category.category === 'Work Experience'">
-                <p><strong>{{ item.title }}</strong> - {{ item.company }} ({{ item.duration }})</p>
+                <p><i class="bi bi-flower3"></i><strong> {{ item.title }}</strong> - {{ item.company }} ({{
+                  item.duration }})</p>
               </div>
             </div>
           </mat-expansion-panel>
         </mat-accordion>
-        
+
       </div>
     </div>
   </div>

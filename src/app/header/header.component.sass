@@ -1,19 +1,20 @@
-$navbar-bg: #FAF3DD
+$navbar-bg: #fff !important
 $navbar-text-color: #333
-$navbar-brand-color: #FFA69E
-$navbar-link-color: #FFA69E
+$navbar-brand-color: #D7B890
+$navbar-link-color: #2C81D6
+
 
 .navbar
   background-color: $navbar-bg
   height: 100px
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1)
+  padding: 0 30px
 
   .navbar-brand
     color: $navbar-brand-color
-    font-family: "Bagel Fat One", serif
-    font-weight: 400
+    font-weight: 700
     font-style: normal
-    font-size: 1.6rem
+    font-size: 1.8rem
     &:hover
       color: darken($navbar-brand-color, 10%)
 
@@ -21,8 +22,7 @@ $navbar-link-color: #FFA69E
     .nav-item
       .nav-link
         color: $navbar-link-color
-        font-family: "Bagel Fat One", serif
-        font-weight: 200
+        font-weight: 400
         font-size: 1.3rem
         padding: 0.8rem 1rem
         &:hover
@@ -32,15 +32,26 @@ $navbar-link-color: #FFA69E
 @media (max-width: 767px)
   .navbar
     padding: 0.5rem 1rem
+    height: auto // Per adattare l'altezza dinamicamente
 
-  .navbar-nav
-    .nav-item
-      .nav-link
-        padding: 0.5rem 0.8rem
+    .navbar-toggler
+      border: none
+      background-color: transparent
+      color: $navbar-link-color
+      padding: 0.5rem
+      display: flex
+      align-items: center
+      justify-content: center
 
-  .navbar-toggler-icon
-    background-color: $navbar-link-color
+      &:focus
+        outline: none
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.3) // Migliora l'accessibilità
 
-  .navbar-toggler
-    border: none
-    color: $navbar-link-color
+      i.bi-list
+        font-size: 1.5rem // Dimensione dell'icona
+        color: $navbar-link-color
+        transition: transform 0.3s ease
+
+        &:hover
+          color: darken($navbar-brand-color, 10%)
+          transform: scale(1.1) // Effetto di ingrandimento al passaggio del mouse

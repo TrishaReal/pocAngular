@@ -1,72 +1,93 @@
-$title-color: #333
-$text-color: $title-color
-$link-color: #FFA69E
-$link-bg: #FFF
-$custom-progress-bar-color: #B8F2E6
-
 .container
   margin-top: 2rem
-  padding: 50px
+  padding: 50px 0
 
 h1, h2
   font-size: 2rem
-  margin-bottom: 1rem
-  font-family: "Bagel Fat One", serif
-  font-weight: 400
+  margin-bottom: 1.3rem
+  font-family: "Atma", serif
+  font-weight: 600
   font-style: normal
-  color: $title-color
+  color: #fff
+
+  strong
+    color: #D7B890 !important
+    text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff
 
 p
   font-size: 1.1rem
   line-height: 1.5
-  color: $text-color
+  color: #fff
+  display: flex
+  align-items: center
 
-  strong
-    font-family: "Bagel Fat One", serif
-    font-size: 1.3rem
-    padding-right: 10px
+  i
+    font-size: 26px
+    margin-right: 12px
 
   a
-    color: $link-color
-    font-weight: 600
+    color: #fff
     text-decoration: none
-    background-color: $link-bg
-    padding: 2px 8px
-    border-radius: 10px
+    &:hover
+      color: #D7B890
+      text-decoration: underline
 
-.row
+.section
+  margin: 60px 0
+
+.about
   display: flex
   flex-wrap: wrap
   justify-content: space-between
-
-.section
-  background-color: #fff
+  align-items: center
   padding: 30px
-  border-radius: 50px
+
+.skills
+  padding: 30px
   margin: 20px 0
 
+  p
+    color: #030524
+
   .row
-    margin: 30px 0
+    background-color: #fff
+    border-radius: 16px
+    padding: 20px 10px 0 10px
+    box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12)
 
 .skill-item
-  margin-bottom: 2rem
+  margin-bottom: 1.5rem
 
-  mat-progress-bar
-  margin-top: 1rem
-  margin-bottom: 2rem
+mat-progress-bar
   height: 10px
   border-radius: 5px
-  .mdc-linear-progress__bar-inner
-    background-color: $custom-progress-bar-color
-    border-radius: 5px
+  --mdc-linear-progress-active-indicator-color: #2C81D6
+  --mdc-linear-progress-track-color: #AED9E0
 
+.mdc-linear-progress__bar-inner
+  border-color: #fff
+  border-radius: 5px
+
+.resume
+  padding: 30px
+  font-family: "Atma", serif
 .custom-accordion
   .custom-expansion-panel
-    background-color: $link-color
+    background-color: #fff
+    border-radius: 16px
+    margin: 10px 0
     .mat-expansion-panel-header-title
-      color: $title-color
-      font-family: "Bagel Fat One", serif
-      font-size: 1.2rem
+      color: #030524
+      font-family: "Atma", serif
+      font-size: 1.3rem
+    --mat-expansion-header-indicator-color: #030524
+  p
+    color: #030524
+
+    strong
+      color: #2C81D6
+      sfont-size: 1.2rem
+      padding-right: 4px
 
 img.img-fluid
   animation: floating 3s ease-in-out infinite
