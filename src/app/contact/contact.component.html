@@ -76,33 +76,45 @@
                 <h2 class="text-center mb-4">Add Your Feedback</h2>
 
                 <!-- Feedback Form -->
-                <form (ngSubmit)="addFeedback()" #feedbackForm="ngForm"
+                <form #feedbackForm="ngForm" (ngSubmit)="addFeedback()"
                     class="p-4 border rounded shadow-sm mb-4 bg-light">
+
                     <div class="row">
                         <!-- Left Side: Upload, Rating, Name, and Comment -->
                         <div class="col-md-6">
+                            <label>Upload image (optional)</label>
                             <div class="mb-4 upload">
-                                <!-- Preview Image -->
-                                <div class="image-preview ">
-                                    <img [src]="newFeedback.image || 'assets/images/default.jpg'" alt="Image preview"
-                                        class="img-fluid rounded" />
-                                </div>
-
                                 <!-- Image Upload -->
-                                <label for="file" class="custom-file-upload d-flex align-items-center justify-content-start">
+                                <label for="file"
+                                    class="custom-file-upload d-flex align-items-center justify-content-start">
                                     <i class="bi bi-upload me-2"></i> Upload Image
                                 </label>
-                                <input id="file" type="file" (change)="onImageSelected($event)" hidden />
+                                <input id="file" type="file" (change)="onImageSelected($event)" accept="image/*"
+                                    hidden />
+
+                                <!-- Preview Image -->
+                                <div class="preview">
+                                    <div class="image-preview ">
+                                        <img [src]="newFeedback.image || 'assets/images/default.jpg'"
+                                            alt="Image preview" class="img-fluid rounded" />
+                                    </div>
+                                    <button *ngIf="newFeedback.image !== 'assets/images/default.jpg'" type="button"
+                                        class="btn btn-danger btn-sm delete-image text-center" (click)="resetImage()"
+                                        title="Delete?">
+                                        <i class="bi bi-x-circle-fill"></i>
+                                    </button>
+                                </div>
                             </div>
 
-                            <div class="mb-4">
-                                <!-- Rating -->
+                            <div class="mb-4 d-flex rating">
                                 <label>Rating</label>
                                 <div class="stars">
                                     <i *ngFor="let star of stars; let i = index" (click)="setRating(i + 1)"
-                                        [class]="i < newFeedback.rating ? 'bi bi-star-fill' : 'bi bi-star'"></i>
+                                        [class]="i < newFeedback.rating ? 'bi bi-star-fill gold' : 'bi bi-star'"></i>
                                 </div>
                             </div>
+
+
 
                             <div class="mb-4">
                                 <!-- Name -->
@@ -131,9 +143,9 @@
                     </div>
 
                     <!-- Buttons -->
-                    <div class="d-flex justify-content-between mt-4">
+                    <div class="text-end mt-4">
                         <button mat-raised-button color="warn" type="button"
-                            (click)="feedbackForm.resetForm()">Cancel</button>
+                            (click)="resetAll(feedbackForm)">Cancel</button>
                         <button mat-raised-button color="accent" type="submit" class="btn-submit"
                             [disabled]="!feedbackForm.valid">Add Feedback</button>
                     </div>

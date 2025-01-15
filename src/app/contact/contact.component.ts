@@ -8,7 +8,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatIcon } from '@angular/material/icon';
 
-
 @Component({
   selector: 'app-contact',
   standalone: true,
@@ -45,7 +44,6 @@ export class ContactComponent {
   };
 
   stars = new Array(5);
-
   commonService = inject(CommonService);
 
   ngOnInit(): void {
@@ -65,9 +63,9 @@ export class ContactComponent {
     this.commonService.fetchFeedback().subscribe({
       next: (response) => {
         if (!this.feedbackList.length) {
-        this.feedbackList = response.feedback;
-        console.log('Feedback dal server:', this.feedbackList);
-      }
+          this.feedbackList = response.feedback;
+          console.log('Feedback dal server:', this.feedbackList);
+        }
       },
       error: (err) => console.error('The feedback error is -->', err),
     });
@@ -75,29 +73,26 @@ export class ContactComponent {
 
   onImageSelected(event: any): void {
     const file = event.target.files[0];
-    if (file) {
+
+    if (file && file.type.startsWith('image/')) {
       const reader = new FileReader();
       reader.onload = () => {
         this.newFeedback.image = reader.result as string;
       };
       reader.readAsDataURL(file);
     } else {
-      this.newFeedback.image = 'assets/images/default.jpg';
+      alert('Please upload a valid image file (e.g., .jpg, .png, .gif).');
+      this.newFeedback.image = 'assets/images/default.jpg'; // Reimposta l'immagine di default
+      event.target.value = '';
     }
-  }
-  
-  
-
-  setRating(rating: number): void {
-    this.newFeedback.rating = rating;
   }
 
   addFeedback(): void {
-    this.feedbackList.unshift(this.newFeedback); 
+    this.feedbackList.unshift(this.newFeedback);
     this.commonService.postFeedback(this.newFeedback).subscribe({
       next: () => {
         console.log('Feedback inviato con successo:', this.newFeedback);
-        alert('Feedback aggiunto con successo!');
+        alert('Feedback added!');
 
         localStorage.setItem('feedbackList', JSON.stringify(this.feedbackList));
 
@@ -113,6 +108,9 @@ export class ContactComponent {
     });
   }
 
+  setRating(rating: number): void {
+    this.newFeedback.rating = rating;
+  }
 
   getStars(rating: number): string[] {
     const stars = [];
@@ -133,4 +131,24 @@ export class ContactComponent {
       alert("Message sent");
     }
   }
+
+  resetImage(): void {
+    this.newFeedback.image = 'assets/images/default.jpg'; 
+  }
+
+  resetAll(feedbackForm: any): void {
+    feedbackForm.resetForm();
+  
+    this.newFeedback = {
+      author: '',
+      feedback: '',
+      image: 'assets/images/default.jpg', 
+      date: new Date().toISOString().split('T')[0],
+      rating: 0
+    };
+  
+    this.stars = new Array(5);
+  }
+  
+  
 }

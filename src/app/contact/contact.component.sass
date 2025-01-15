@@ -4,6 +4,7 @@
   max-width: 1000px
   margin: 0 auto
   font-family: "Atma", serif
+  color: #030524
 
   form
     background: #fff
@@ -63,11 +64,15 @@
 
 .card-title
   font-size: 1.25rem
-  color: #2c3e50
+  font-family: "Atma", serif
+  font-weight: 500
+  color: #2C81D6
+  text-transform: capitalize
 
 .card-text
   font-size: 1rem
-  color: #7f8c8d
+  color: #030524 !important
+  text-transform: capitalize
 
 .card-footer
   display: flex
@@ -76,13 +81,23 @@
 .text-warning i
   color: #f39c12
 
-.stars i
-  cursor: pointer
-  font-size: 1.5rem
-  margin-right: 5px
+.rating
+  align-items: center
+  .stars
+    padding: 0 30px
 
-.stars i:hover
-  color: gold
+  i
+    color: #8cacc6
+    cursor: pointer
+    font-size: 1.5rem
+    margin-right: 5px
+    transition: background-color 0.3s ease
+
+    &.gold
+      color: gold
+
+    &:hover
+      color: gold
 
 button:disabled
   opacity: 0.5
@@ -106,14 +121,13 @@ button.btn-submit:disabled
   cursor: not-allowed
   opacity: 0.7
 
-
-.upload 
-  background-color: pink  
+.upload
   display: flex
   justify-content: space-evenly
   align-items: center
   padding: 20px
-  
+  position: relative
+
 .custom-file-upload
   display: inline-block
   padding: 10px 20px
@@ -129,7 +143,7 @@ button.btn-submit:disabled
     margin-right: 8px
     font-size: 20px
   &:hover
-    background-color: #303f9f
+    background-color: #0B69B5
     transition: background-color 0.3s ease
 
 .selected-image
@@ -145,3 +159,23 @@ button.btn-submit:disabled
   padding: 5px
   background-color: #f9f9f9
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1)
+
+button.delete-image
+  width: 22px
+  height: 22px
+  display: flex
+  justify-content: center
+  align-items: center
+  position: absolute
+  background-color: #fff
+  border-radius: 100%
+  left: 365px
+  top: 14px
+  border: 2px solid #ccc
+  padding: 8px
+  cursor: pointer
+
+button.delete-image i
+  margin: 0
+  font-size: 16px
+  color: red
