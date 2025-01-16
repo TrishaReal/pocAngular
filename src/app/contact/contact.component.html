@@ -250,11 +250,19 @@
                                 </mat-form-field>
                             </div>
                         </div>
-                        <div class="text-end modal-footer">
-                            <button mat-raised-button color="warn" type="button"
-                                (click)="closeEditModal()">Cancel</button>
-                            <button mat-raised-button color="accent" type="submit"
-                                [disabled]="!editFeedbackForm.valid">Save</button>
+                        <div class="modal-footer d-flex justify-content-between align-items-center">
+                            <div class="delete">
+                                <button mat-raised-button color="warn"
+                                    (click)="deleteFeedback(editingFeedback)">Delete
+                                </button>
+
+                            </div>
+                            <div class="actions">
+                                <button mat-raised-button color="warn" type="button"
+                                    (click)="closeEditModal()">Cancel</button>
+                                <button mat-raised-button color="accent" type="submit"
+                                    [disabled]="!editFeedbackForm.valid">Save</button>
+                            </div>
                         </div>
 
                     </form>

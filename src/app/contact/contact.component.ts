@@ -78,7 +78,9 @@ export class ContactComponent {
       const reader = new FileReader();
       reader.onload = () => {
         if (this.editingFeedback) {
-          this.editingFeedback.image = reader.result as string; // Assegna l'immagine come base64
+          this.editingFeedback.image = reader.result as string;
+        } else {
+          this.newFeedback.image = reader.result as string;
         }
       };
       reader.readAsDataURL(file);
@@ -87,7 +89,7 @@ export class ContactComponent {
 
   removeImage(): void {
     if (this.editingFeedback) {
-      this.editingFeedback.image = null; // Rimuove l'immagine
+      this.editingFeedback.image = null;
     }
   }
 
@@ -116,6 +118,8 @@ export class ContactComponent {
   setRating(rating: number): void {
     if (this.editingFeedback) {
       this.editingFeedback.rating = rating;
+    } else {
+      this.newFeedback.rating = rating;
     }
   }
 
@@ -131,7 +135,6 @@ export class ContactComponent {
     return stars;
   }
 
-  //contact form submit 
   onSubmit(): void {
     if (this.contact.firstName && this.contact.lastName && this.contact.email && this.contact.description) {
       console.log('Contact Form Submitted', this.contact);
@@ -159,7 +162,7 @@ export class ContactComponent {
 
   openEditModal(feedback: any): void {
     console.log('Opening modal for feedback:', feedback);
-    this.editingFeedback = { ...feedback }; 
+    this.editingFeedback = { ...feedback };
   }
 
   closeEditModal(): void {
@@ -175,6 +178,19 @@ export class ContactComponent {
       this.closeEditModal();
     }
   }
+
+  deleteFeedback(feedbackToDelete: any): void {
+    const index = this.feedbackList.findIndex(feedback => feedback.date === feedbackToDelete.date);
+    if (index !== -1) {
+      this.feedbackList.splice(index, 1);
+      localStorage.setItem('feedbackList', JSON.stringify(this.feedbackList));
+      console.log('Feedback eliminato:', feedbackToDelete);
+      alert('Feedback eliminato con successo!');
+      this.closeEditModal();
+    }
+  }
+
+
 
 
 }
