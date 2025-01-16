@@ -42,8 +42,9 @@ export class ContactComponent {
     date: new Date().toISOString().split('T')[0],
     rating: 0
   };
+  editingFeedback: any = null;
 
-  stars = new Array(5);
+  stars: number[] = Array(5).fill(0);
   commonService = inject(CommonService);
 
   ngOnInit(): void {
@@ -71,21 +72,25 @@ export class ContactComponent {
     });
   }
 
-  onImageSelected(event: any): void {
-    const file = event.target.files[0];
-
-    if (file && file.type.startsWith('image/')) {
+  onImageSelected(event: Event): void {
+    const file = (event.target as HTMLInputElement).files?.[0];
+    if (file) {
       const reader = new FileReader();
       reader.onload = () => {
-        this.newFeedback.image = reader.result as string;
+        if (this.editingFeedback) {
+          this.editingFeedback.image = reader.result as string; // Assegna l'immagine come base64
+        }
       };
       reader.readAsDataURL(file);
-    } else {
-      alert('Please upload a valid image file (e.g., .jpg, .png, .gif).');
-      this.newFeedback.image = 'assets/images/default.jpg'; // Reimposta l'immagine di default
-      event.target.value = '';
     }
   }
+
+  removeImage(): void {
+    if (this.editingFeedback) {
+      this.editingFeedback.image = null; // Rimuove l'immagine
+    }
+  }
+
 
   addFeedback(): void {
     this.feedbackList.unshift(this.newFeedback);
@@ -109,7 +114,9 @@ export class ContactComponent {
   }
 
   setRating(rating: number): void {
-    this.newFeedback.rating = rating;
+    if (this.editingFeedback) {
+      this.editingFeedback.rating = rating;
+    }
   }
 
   getStars(rating: number): string[] {
@@ -133,22 +140,41 @@ export class ContactComponent {
   }
 
   resetImage(): void {
-    this.newFeedback.image = 'assets/images/default.jpg'; 
+    this.newFeedback.image = 'assets/images/default.jpg';
   }
 
   resetAll(feedbackForm: any): void {
     feedbackForm.resetForm();
-  
+
     this.newFeedback = {
       author: '',
       feedback: '',
-      image: 'assets/images/default.jpg', 
+      image: 'assets/images/default.jpg',
       date: new Date().toISOString().split('T')[0],
       rating: 0
     };
-  
+
     this.stars = new Array(5);
   }
-  
-  
+
+  openEditModal(feedback: any): void {
+    console.log('Opening modal for feedback:', feedback);
+    this.editingFeedback = { ...feedback }; 
+  }
+
+  closeEditModal(): void {
+    this.editingFeedback = null;
+  }
+
+  updateFeedback(): void {
+    const index = this.feedbackList.findIndex(f => f.date === this.editingFeedback.date);
+    if (index !== -1) {
+      this.feedbackList[index] = { ...this.editingFeedback };
+      localStorage.setItem('feedbackList', JSON.stringify(this.feedbackList));
+      console.log('Feedback updated:', this.editingFeedback);
+      this.closeEditModal();
+    }
+  }
+
+
 }

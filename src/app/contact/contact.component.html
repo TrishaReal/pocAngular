@@ -71,8 +71,8 @@
     </div>
 
     <div class="row">
-        <div class="col-md-12 mt-4">
-            <section class="feedback-section mt-4">
+        <div class="col-md-12 mt-5">
+            <section class="feedback-section">
                 <h2 class="text-center mb-4">Add Your Feedback</h2>
 
                 <!-- Feedback Form -->
@@ -114,8 +114,6 @@
                                 </div>
                             </div>
 
-
-
                             <div class="mb-4">
                                 <!-- Name -->
                                 <mat-form-field appearance="fill" class="w-100">
@@ -135,14 +133,12 @@
                             </div>
                         </div>
 
-                        <!-- Right Side: Image of Sandy -->
                         <div class="col-md-6 text-center">
                             <img src="assets/sandy.webp" alt="{{ personalInfo?.name }}" class="img-fluid "
                                 style="width: auto;">
                         </div>
                     </div>
 
-                    <!-- Buttons -->
                     <div class="text-end mt-4">
                         <button mat-raised-button color="warn" type="button"
                             (click)="resetAll(feedbackForm)">Cancel</button>
@@ -161,19 +157,109 @@
                                 <h5 class="card-title">{{ feedback.author }}</h5>
                                 <p class="card-text">{{ feedback.feedback }}</p>
                             </div>
-                            <div class="card-footer d-flex justify-content-between align-items-center">
-                                <div class="text-warning">
+                            <div class="card-footer d-flex flex-column">
+                                <div class="date">
+                                    <p class="text-muted">{{ feedback.date }}</p>
+                                </div>
+                                <div class="text-warning d-flex justify-content-between align-items-center">
                                     <ng-container *ngFor="let star of getStars(feedback.rating); let i = index">
                                         <i [class]="star" class="bi"></i>
                                     </ng-container>
+
+                                    <button mat-icon-button (click)="openEditModal(feedback)" title="Edit Feedback">
+                                        <mat-icon>edit</mat-icon>
+                                    </button>
                                 </div>
-                                <span class="text-muted">{{ feedback.date }}</span>
+
                             </div>
                         </div>
                     </div>
                 </div>
-
             </section>
+
+
+            <!-- MODAL -->
+            <div *ngIf="editingFeedback" class="modal-overlay">
+                <div class="modal-content">
+                    <div class="modal-head">
+                        <div class="close-modal">
+
+                            <button class="close-button" (click)="closeEditModal()"><i class="bi bi-x"></i></button>
+                        </div>
+                        <h3>Edit Feedback</h3>
+                    </div>
+
+                    <form (ngSubmit)="updateFeedback()" #editFeedbackForm="ngForm">
+                        <div class="row">
+                            <!-- Image Upload -->
+                            <div class="col-md-6">
+                                <label>Upload image (optional)</label>
+                                <div class="mb-4 upload d-flex flex-column justify-content-center align-items-center">
+                                    <div class="preview">
+                                        <input id="file" type="file" (change)="onImageSelected($event)" accept="image/*"
+                                            hidden #fileInput />
+                                        <img [src]="editingFeedback.image || 'assets/images/default.jpg'"
+                                            alt="Image preview" class="img-fluid rounded" />
+                                    </div>
+                                    <div class="image-actions mt-2">
+                                        <button mat-raised-button color="accent" type="button"
+                                            (click)="fileInput.click()">
+                                            {{ editingFeedback.image ? 'Change ' : 'Upload Image' }}
+                                        </button>
+                                        <button *ngIf="editingFeedback.image" mat-raised-button color="warn"
+                                            class="remove" type="button" (click)="removeImage()">
+                                            Remove
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Rating -->
+                            <div class="col-md-6">
+                                <label>Rating</label>
+                                <div class="mb-4 rating d-flex flex-column justify-content-center align-items-between">
+                                    <div class="stars">
+                                        <i *ngFor="let star of stars; let i = index" (click)="setRating(i + 1)"
+                                            [ngClass]="i < editingFeedback.rating ? 'bi bi-star-fill gold' : 'bi bi-star'">
+                                        </i>
+                                    </div>
+                                    <div class="button mt-2">
+                                        <button mat-raised-button color="warn" type="button" class="reset-rating"
+                                            (click)="setRating(0)">
+                                            Reset Rating
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Name -->
+                            <div class="col-12">
+                                <mat-form-field appearance="fill" class="w-100">
+                                    <mat-label>Nome</mat-label>
+                                    <input matInput placeholder="Nome" [(ngModel)]="editingFeedback.author"
+                                        name="author" required />
+                                </mat-form-field>
+                            </div>
+
+                            <!-- Comment -->
+                            <div class="col-12 mb-4">
+                                <mat-form-field appearance="fill" class="w-100">
+                                    <mat-label>Commento</mat-label>
+                                    <textarea matInput placeholder="Comment" [(ngModel)]="editingFeedback.feedback"
+                                        name="feedback" required></textarea>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="text-end modal-footer">
+                            <button mat-raised-button color="warn" type="button"
+                                (click)="closeEditModal()">Cancel</button>
+                            <button mat-raised-button color="accent" type="submit"
+                                [disabled]="!editFeedbackForm.valid">Save</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 

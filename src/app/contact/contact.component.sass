@@ -49,7 +49,7 @@
       background-color: btn-submit
 
 .feedback-section
-  margin-top: 30px
+  margin-top: 150px
 
 .card
   border-radius: 10px
@@ -78,8 +78,17 @@
   display: flex
   justify-content: space-between
 
-.text-warning i
-  color: #f39c12
+.text-warning
+  i
+    color: #f39c12
+  .mat-icon
+    color: #007bff !important
+  button
+    margin: 0 0 0 20px
+
+.text-muted
+  font-size: 14px !important
+  margin: 0
 
 .rating
   align-items: center
@@ -179,3 +188,98 @@ button.delete-image i
   margin: 0
   font-size: 16px
   color: red
+
+.modal-overlay
+  position: fixed
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+  background: rgba(0, 0, 0, 0.5)
+  display: flex
+  justify-content: center
+  align-items: center
+  z-index: 999
+
+  .modal-content
+    font-family: "Atma", serif
+    background: white
+    padding: 20px
+    border-radius: 5px
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1)
+    max-width: 60%
+    max-height: 90%
+    text-align: center
+
+  .modal-head
+    .close-modal
+      display: flex
+      align-items: center
+      justify-content: end
+
+
+  form
+    overflow-y: auto
+    overflow-x: hidden
+    border-radius: 0px !important
+
+  .close-button
+    border: 2px solid white
+    border-radius: 100%
+    width: 30px
+    height: 30px
+    display: flex
+    align-items: center
+    justify-content: center
+    z-index: 9999
+
+    i
+      color: white
+      font-size: 20px
+      margin-right: 0
+      margin-top: 2px
+
+  h3
+    font-family: "Atma", serif
+    font-size: 24px
+    font-weight: 500
+    padding-bottom: 12px
+    color: #007bff !important
+
+  p
+    color: #030524
+
+  img
+    height: 150px
+    width: auto
+
+  button
+    background-color: #2C81D6
+    color: white !important
+    font-weight: 400
+    font-size: 12px
+    height: 24px
+  .remove
+    background-color: red !important
+
+  .rating
+    padding: 20px
+    .stars
+      height: 150px
+      display: flex
+      align-items: center
+      justify-content: center
+    i
+      color: #8cacc6
+      cursor: pointer
+      font-size: 1.5rem
+      margin: 0 2px
+      transition: background-color 0.3s ease
+
+      &.gold
+        color: gold
+
+      &:hover
+        color: gold
+
+
