@@ -7,6 +7,11 @@
           "title": "Sandy's Rocket",
           "description": "A revolutionary rocket designed by Sandy Cheeks to explore outer space.",
           "image": "assets/images/rocket.jpg"
+        },
+        {
+          "title": "Jetpack Prototype",
+          "description": "A high-powered jetpack Sandy created to improve underwater mobility, as seen in 'Prehibernation Week'.",
+          "image": "assets/images/jetpack.jpg"
         }
       ]
     },
@@ -22,6 +27,11 @@
           "title": "Futuristic Lab",
           "description": "A futuristic laboratory with advanced technology for scientific experiments.",
           "image": "assets/images/futuristic-lab.jpg"
+        },
+        {
+          "title": "Tree Dome Ecosystem",
+          "description": "Sandy's iconic glass dome designed to replicate her natural environment, featured in various episodes.",
+          "image": "assets/images/tree-dome.jpg"
         }
       ]
     }
